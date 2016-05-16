@@ -1,14 +1,12 @@
 
-#client = MongoClient()
-#db=client.datab #datab is the name of the database
-#songs = db.datab#songs is the name of the collection
-import pymongo
+
+import pymongo      #importing pymongo library
 from pymongo import MongoClient
-connection=MongoClient('localhost',27017)
-db=connection.datab
-data=db.songs
+connection=MongoClient('localhost',27017)  #establish connection
+db=connection.datab #datab ->database name
+data=db.songs #songs ->collection name
 #songslist=data.find()
-while 1:
+while 1:       #infiite loop
     print("Welcome to Songs DB!!!!!!!")
     print("Choose your options")
     print("1.Add the song to the database")
@@ -22,8 +20,8 @@ while 1:
                 print("Enter the details:")
                 t=raw_input("Enter title:")
                 a=raw_input("Enter artist:")
-                db.songs.insert_one({"genre":genre,"title":t,"artist":a}).inserted_id
-                db.songs.find().sort({"title":1})
+                db.songs.insert_one({"genre":genre,"title":t,"artist":a}).inserted_id #inserting song document to the collection
+                db.songs.find().sort({"title":1})   #sorting documents according to their title
             elif genre=="rap":
                 print("Enter the details:")
                 t=raw_input("Enter title:")
@@ -53,23 +51,14 @@ while 1:
             art=raw_input("Enter the Artist name : ")
             db.songs.find().sort({"title":1})
             print "Song results found in Database are:"
-            cur=db.songs.find({"artist":art})
+            cur=db.songs.find({"artist":art})   
             for doc in cur:
                 print(doc)
             print "No of results found are:"
 
             print db.songs.count({"artist": art})
             songslist=data.find()
-            #for item in songslist:
-
-             #    print("Genre : "+item["genre"]+" | Artist: "+item["artist"]+" | Title : "+item["title"])
-
-
-
-
-            #db.songs.find()
-            #db.songs.find({"artist":art}).pretty()
-            #b.songs.find()
+            
         elif choice=="2":
             gen=raw_input("Enter the genre : ")
             db.songs.find().sort({"title":1})
